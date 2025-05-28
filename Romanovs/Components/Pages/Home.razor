@@ -1,7 +1,44 @@
 ﻿@page "/"
-
+@inject NavigationManager NavigationManager
 <PageTitle>Home</PageTitle>
 
 <h1>The Romanovs</h1>
 
+<h2>About</h2>
+This website is a wiki detailing the Romanov dynasty and how its members affected history throughout their 300 years in control of Russia.
 
+<h2> Search</h2>
+Use the search bar to search for any pages you want to see that may not be listed on the side.
+<div> 
+	<label class="form-label">Search</label>
+	<input type="text" @bind="InputValue" />
+    <label class="form-label"> </label>
+	<button @onclick="ProcessInput">search</button>
+    
+</div>
+@code
+{
+
+    private string InputValue = "";
+    private void ProcessInput()
+    {
+        switch (InputValue.ToLower())
+        {
+            case "filaret":
+                NavigationManager.NavigateTo("/filaret"); 
+                break;
+            case "michael I":
+                NavigationManager.NavigateTo("/michaelI"); 
+                break;
+            case "nikita":
+                NavigationManager.NavigateTo("/nikita"); 
+                break;
+            case "establishment":
+                NavigationManager.NavigateTo("/Establishment");
+                break;
+            default:
+               NavigationManager.NavigateTo("/"); 
+                break;
+        }
+    }
+}
